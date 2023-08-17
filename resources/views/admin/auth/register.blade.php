@@ -82,31 +82,37 @@
 </head>
 <body>
     <div class="wrapper">
-        <form class="form-signin">
-          <h2 class="form-signin-heading">Login</h2>
-       <a href="" id="click">Hello</a>
+        <form class="form-signin" method="Post" action="{{route('admin.store')}}">
+            @csrf
+          <h2 class="form-signin-heading">Register</h2>
+      
           <div class="inner-addon left-addon">
-            <label class="control-label">name</label>
+            <label class="control-label">Name</label>
               <i class="glyphicon glyphicon-globe"></i>
-              <input type="text" class="form-control" name="site" placeholder="" required="" autofocus=""/>
+              <input type="text" class="form-control" name="name" placeholder="" required="" autofocus=""/>
           </div>
           <div class="inner-addon left-addon">
-             <label class="control-label">password</label>
+             <label class="control-label">Email</label>
               <i class="glyphicon glyphicon-lock"></i>
-              <input type="password" class="form-control" name="password" placeholder="" required="" autofocus=""/>
+              <input type="email" class="form-control" name="email" placeholder="" required="" autofocus=""/>
           </div>
+          <div class="inner-addon left-addon">
+            <label class="control-label">Password</label>
+             <i class="glyphicon glyphicon-lock"></i>
+             <input type="password" class="form-control" name="password" placeholder="" required="" autofocus=""/>
+         </div>
            <a class="forgot-password" href="#">I forgot my password</a>   
           <button class="btn btn-lg btn-primary btn-block" type="submit">Let me in!</button>
         </form>
         <p class="account-signup">Don't have an account? <a href="#">Sign up here</a>
       </div>
-      <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
-      <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
-      <script src="{{ asset('assets/js/script.js') }}"></script>
+      <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+      <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ asset('js/script.js') }}"></script>
       <script src="{{ asset('assets/toastr/js/toastr.min.js') }}" type="text/javascript"></script>
-    <script src="{{asset('assets/js/vendors.min.js')}}"></script>
-    <script src="{{asset('assets/js/pages/chat-popup.js')}}"></script>
-      <script src="{{ asset('assets/js/sweetalert2.min.js') }}"></script>
+    <script src="{{asset('js/vendors.min.js')}}"></script>
+    <script src="{{asset('js/pages/chat-popup.js')}}"></script>
+      <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
       <script src="{{asset('assets/icons/feather-icons/feather.min.js')}}"></script>
       <script type="text/javascript">
           @if(session()->has('error'))
@@ -132,10 +138,6 @@
                               hideMethod: "fadeOut",tapToDismiss: !1
                           })
               @endif
-
-              $('#click').on('click',function(){
-                swal.fire("hellow World");
-              })
               </script>
 </body>
 </html>
