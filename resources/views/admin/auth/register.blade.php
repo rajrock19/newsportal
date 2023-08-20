@@ -104,7 +104,7 @@
            <a class="forgot-password" href="#">I forgot my password</a>   
           <button class="btn btn-lg btn-primary btn-block" type="submit">Let me in!</button>
         </form>
-        <p class="account-signup">Don't have an account? <a href="#">Sign up here</a>
+        <p class="account-signup">Already have an account? <a href="{{route('admin.login')}}">Sign In here</a>
       </div>
       <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
       <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

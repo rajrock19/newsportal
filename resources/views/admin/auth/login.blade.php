@@ -82,13 +82,14 @@
 </head>
 <body>
     <div class="wrapper">
-        <form class="form-signin">
+        <form class="form-signin" action="{{route('admin.authenticate')}}" method="Post">
+          @csrf
           <h2 class="form-signin-heading">Login</h2>
        <a href="" id="click">Hello</a>
           <div class="inner-addon left-addon">
             <label class="control-label">name</label>
               <i class="glyphicon glyphicon-globe"></i>
-              <input type="text" class="form-control" name="site" placeholder="" required="" autofocus=""/>
+              <input type="email" class="form-control" name="email" placeholder="" required="" autofocus=""/>
           </div>
           <div class="inner-addon left-addon">
              <label class="control-label">password</label>

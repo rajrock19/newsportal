@@ -19,3 +19,7 @@ use App\Http\Controllers\Admin\AuthController;
 Route::get('admin/login',[AuthController::class,'index'])->name('admin.login');
 Route::get('admin/register',[AuthController::class,'create'])->name('admin.register');
 Route::Post('admin/store',[AuthController::class,'store'])->name('admin.store');
+
+Route::Post('admin/authenticate',[AuthController::class,'authenticate'])->name('admin.authenticate');
+
+Route::get('admin/dashboard',[AuthController::class,'dashnboard'])->name('admin.dashboard');

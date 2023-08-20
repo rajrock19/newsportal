@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Hash;
+use Illuminate\Support\Facades\Validator;
+use Session;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -31,5 +34,60 @@ class AuthController extends Controller
 
     return redirect()->route('admin.login')->with('success','Saved Successfully');
 
+    }
+
+
+    public function authentgficate(Request $request){
+    
+       $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+ 
+        $credentials = $request->only('email', 'password');
+        if(Auth::attempt($credentials)){
+               
+        if (auth()->user()->roles != 1) {
+            return redirect()->back()->with('error','Permission denied');  
+        }
+        
+        // activity()->causedBy(auth()->user())->performedOn(auth()->user())->event('login')
+        // ->useLog('login')
+        // ->log('username : '.auth()->user()->name);
+        
+            return redirect()->route('admin.dashboard')->with('Login successfully');
+         }else {
+            return redirect()->back()->with('error','Invalid login credentials');
+         }
+        return redirect()->route('login')->with('error','Access Denied');
+
+    }
+
+    public function authenticate(Request $request){
+    
+     $validator =Validator::make($request->all(),[
+        'email'=>'required',
+        'password'=>'required'
+     ]);
+
+     if($validator->fails()){
+      return redirect()->back()->withInput()->withErrors($validator);
+     }
+
+     $credentials=$request->only('email','password');
+     if(Auth::attempt($credentials)){
+
+    return redirect()->route('admin.dashboard')->with('Login Successfully');
+     }else {
+        return redirect()->back()->with('error','Invalid login credentials');
+         
+     }
+    }
+
+    public function dashnboard (){
+        return view('admin.dashboard');
     }
 }
