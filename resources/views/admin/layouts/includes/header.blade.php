@@ -54,11 +54,11 @@
                         <p class="text-muted mb-0">Administrator</p>
                     </div>
                 </div>
-              <a class="dropdown-item" href="{{route('admin.account.edit',auth()->user()->id)}}"><i class="feather-edit me-1"></i> My Profile</a>
-                <a class="dropdown-item" href="{{ route('admin.general_setting.index') }}"><i class="feather-sliders me-1"></i>
+              <a class="dropdown-item" href=""><i class="feather-edit me-1"></i> My Profile</a>
+                <a class="dropdown-item" href=""><i class="feather-sliders me-1"></i>
                     Account Settings</a>
                 <hr class="my-0 ms-2 me-2">
-                <a class="dropdown-item" href="{{url('logout')}}"><i class="feather-log-out me-1"></i> Logout</a>
+                <a class="dropdown-item" href=""><i class="feather-log-out me-1"></i> Logout</a>
             </div>
         </li>
     </ul>
