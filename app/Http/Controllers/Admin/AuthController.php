@@ -86,7 +86,16 @@ class AuthController extends Controller
          
      }
     }
+    public function logout(){
+        Session::flush();
+        Auth::logout();
+        return Redirect()->route('admin.login');
+    }
+ 
 
+    public function profile_show(){
+        return view('admin.auth.profileshow');
+    }
     public function dashnboard (){
         return view('admin.dashboard');
     }

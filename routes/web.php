@@ -16,10 +16,19 @@ use App\Http\Controllers\Admin\AuthController;
 |
 */
 
-Route::get('admin/login',[AuthController::class,'index'])->name('admin.login');
-Route::get('admin/register',[AuthController::class,'create'])->name('admin.register');
-Route::Post('admin/store',[AuthController::class,'store'])->name('admin.store');
+Route::prefix('admin')->group(function () {
+//Authetication 
+Route::get('/login',[AuthController::class,'index'])->name('admin.login');
+Route::get('/register',[AuthController::class,'create'])->name('admin.register');
+Route::Post('/store',[AuthController::class,'store'])->name('admin.store');
+Route::Post('/authenticate',[AuthController::class,'authenticate'])->name('admin.authenticate');
+Route::get('/logout',[AuthController::class,'logout'])->name('admin.logout');
 
-Route::Post('admin/authenticate',[AuthController::class,'authenticate'])->name('admin.authenticate');
+Route::get('/profile/show',[AuthController::class,'profile_show'])->name('admin.profile.show');
 
-Route::get('admin/dashboard',[AuthController::class,'dashnboard'])->name('admin.dashboard');
+//dashboard
+Route::get('/dashboard',[AuthController::class,'dashnboard'])->name('admin.dashboard');
+
+//
+
+});
