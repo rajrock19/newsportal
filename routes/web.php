@@ -25,6 +25,8 @@ Route::Post('/authenticate',[AuthController::class,'authenticate'])->name('admin
 Route::get('/logout',[AuthController::class,'logout'])->name('admin.logout');
 
 Route::get('/profile/show',[AuthController::class,'profile_show'])->name('admin.profile.show');
+Route::get('profile/updatepage',[AuthController::class,'profile_update'])->name('admin.profile.updatepage');
+Route::Post('profile/update',[AuthController::class,'update'])->name('admin.profile.update');
 
 //dashboard
 Route::get('/dashboard',[AuthController::class,'dashnboard'])->name('admin.dashboard');

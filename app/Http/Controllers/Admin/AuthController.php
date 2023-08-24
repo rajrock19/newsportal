@@ -99,4 +99,31 @@ class AuthController extends Controller
     public function dashnboard (){
         return view('admin.dashboard');
     }
+
+    
+    public function profile_update(){
+        $user=User::where('id',auth()->user()->id)->first();
+        return view('admin.auth.profileupdate',compact('user'));
+    }
+    
+
+    public function update(Request $request){
+        $user=User::where('id',auth()->user()->id)->first();
+        $user->name=$request->name;
+        $user->email=$request->email;
+        $user->mobile=$request->mobile;
+        if($request->file('image')){
+            $file=$request->file('image');
+
+            $filename=date('news').$file->getClientOriginalName();
+            $file->move(public_path('upload/adminmages'),$filename);
+            $user['image']=$filename;
+        }
+        $user->save();
+        if (!$user) {
+            return redirect()->back()->with('error','something Went Wrong');
+        }
+        return redirect()->route('admin.profile.show')->with('success','Saved Successfully');
+     
+    }
 }
