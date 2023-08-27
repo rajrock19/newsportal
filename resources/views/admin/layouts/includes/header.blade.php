@@ -55,8 +55,8 @@
                     </div>
                 </div>
               <a class="dropdown-item" href="{{route('admin.profile.show')}}"><i class="feather-edit me-1"></i> My Profile</a>
-                <a class="dropdown-item" href=""><i class="feather-sliders me-1"></i>
-                    Account Settings</a>
+                <a class="dropdown-item" href="{{route('admin.change.password')}}"><i class="feather-sliders me-1"></i>
+                   Change Passowrd</a>
                 <hr class="my-0 ms-2 me-2">
                 <a class="dropdown-item" href="{{route('admin.logout')}}"><i class="feather-log-out me-1"></i> Logout</a>
             </div>

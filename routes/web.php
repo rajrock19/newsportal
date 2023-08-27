@@ -28,6 +28,10 @@ Route::get('/profile/show',[AuthController::class,'profile_show'])->name('admin.
 Route::get('profile/updatepage',[AuthController::class,'profile_update'])->name('admin.profile.updatepage');
 Route::Post('profile/update',[AuthController::class,'update'])->name('admin.profile.update');
 
+
+Route::get('change/password',[AuthController::class,'change_password'])->name('admin.change.password');
+Route::post('change/password/update',[AuthController::class,'changepassowrd_update'])->name('admin.changepassowrd.update');
+
 //dashboard
 Route::get('/dashboard',[AuthController::class,'dashnboard'])->name('admin.dashboard');
 

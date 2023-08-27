@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Session;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use bcrypt;
 
 class AuthController extends Controller
 {
@@ -125,5 +126,34 @@ class AuthController extends Controller
         }
         return redirect()->route('admin.profile.show')->with('success','Saved Successfully');
      
+    }
+
+    public function change_password(){
+        return view('admin.auth.changepassword');
+    }
+
+    public function changepassowrd_update(Request $request){
+    // dd(auth()->user()->id);
+
+    // $user_oldpassword=Hash::check($request->old_password,auth()->user()->password );
+
+    $validateData=$request->validate([
+        'old_password'=>'required',
+        'new_password'=> 'required',
+        'confirm_password'=>'required|same:new_password',
+    ]);
+
+    $hasedpassowrd=auth()->user()->password;
+    if(Hash::check($request->old_password, $hasedpassowrd)){
+        $users =User::find(Auth::id());
+        $users->password=Hash::make($request->new_passowrd);
+        $users->save();
+        session()->flash('message','Password Updated Successfully');
+         return redirect()->back();
+    }else{
+
+        session()->flash('message','Old  Password is not Match');
+        return redirect()->back();
+    }
     }
 }
