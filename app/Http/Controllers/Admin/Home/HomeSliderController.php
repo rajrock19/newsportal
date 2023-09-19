@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Home;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\HomeSlide;
+use Intervention\Image\ImageManagerStatic as Image;
+
 
 class HomeSliderController extends Controller
 {
@@ -17,22 +19,44 @@ class HomeSliderController extends Controller
 
     
     public function update(Request $request){
-        $user=HomeSlide::where('id',1)->first();
-        $user->title=$request->title;
-        $user->short_title=$request->short_title;
-        $user->video_url=$request->video_url;
-        if($request->file('home_slide')){
-            $file=$request->file('home_slide');
+    $slide_id=$request->id;
 
-            $filename=date('slider').$file->getClientOriginalName();
-            $file->move(public_path('upload/adminmages'),$filename);
-            $user['home_slide']=$filename;
-        }
-        $user->save();
-        if (!$user) {
-            return redirect()->back()->with('error','something Went Wrong');
-        }
-        return redirect()->route('home.slide')->with('success','Saved Successfully');
+
+      if($request->file('home_slide')){
+        $image=$request->file('home_slide');
+        $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+
+        Image::make($image)->resize(636,852)->save('upload/home_slide/'.$name_gen);
+
+        $save_url='upload/home_slide/'.$name_gen;
+        HomeSlide::findOrFail($slide_id)->update([
+            'title'=>$request->title,
+            'short_title'=>$request->short_title,
+            'video_url'=>$request->video_url,
+            'home_slide'=>$save_url
+
+        ]);
+        $notification=array(
+            'message' =>'Home Slide Updated with Image Successfully',
+            'alert-type'=>'success'
+        );
+
+        return redirect()->back()->with($notification);
+      }else{
+        HomeSlide::findOrFail($slide_id)->update([
+            'title'=>$request->title,
+            'short_title'=>$request->short_title,
+            'video_url'=>$request->video_url,
+
+        ]);
+        $notification=array(
+            'message' =>'Home Slide Updated with Image Successfully',
+            'alert-type'=>'success'
+        );
+
+      
+        return redirect()->back()->with($notification);
+      }
      
     }
 

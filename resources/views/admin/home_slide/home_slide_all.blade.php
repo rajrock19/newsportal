@@ -18,7 +18,7 @@
                     <form class="form-valide" id="myForm" action="{{ route('admin.homeslider.update') }}" method="Post"
                         enctype="multipart/form-data">
                         @csrf
-
+                    <input type="hidden" name="id" value="{{$homeslide->id}}">
                         <div class="row">
                             <div class="col-md-12 col-xl-12 col-xxl-12 form-group">
                                 <label for="name">Title <span class="text-danger">*</span></label>
@@ -39,20 +39,20 @@
                             <div class="col-md-12 col-xl-12 col-xxl-12 form-group">
                                 <label for="name">Home Slider <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="file" name="video_url" id="video_url" class="form-control"
+                                    <input type="file" name="home_slide" id="home_slide" class="form-control"
                                         placeholder="Enter name" value="{{$homeslide->video_url}}">
                                 </div>
                             </div>
                             <div class="col-md-12 col-xl-12 col-xxl-12 form-group">
                                 <label for="name"> <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                            <img src="{{ asset('upload/adminmages/') }}"  id="showimage" alt="">
+                            <img src="{{ asset('upload/home_slide/'.$homeslide->home_slide) }}"  id="showimage" alt="">
                                 </div>
                             </div>
                             <div class="col-md-12 col-xl-12 col-xxl-12 form-group">
                                 <label for="name">Video Url <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                                    <input type="text" name="home_slide" id="home_slide" class="form-control"
+                                    <input type="text" name="video_url" id="video_url" class="form-control"
                                         placeholder="" value="{{$homeslide->video_url}}">
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
 @push('scripts')
 <script>
     $(document).ready(function(){
-        $('#image').change(function(e){
+        $('#video_url').change(function(e){
            var reader =new FileReader();
            reader.onload = function(e){
             $('#showimage').attr('src',e.target.result);
