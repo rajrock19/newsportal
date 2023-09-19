@@ -146,7 +146,7 @@ class AuthController extends Controller
     $hasedpassowrd=auth()->user()->password;
     if(Hash::check($request->old_password, $hasedpassowrd)){
         $users =User::find(Auth::id());
-        $users->password=Hash::make($request->new_passowrd);
+        $users->password=Hash::make($request->new_password);
         $users->save();
         session()->flash('message','Password Updated Successfully');
          return redirect()->back();

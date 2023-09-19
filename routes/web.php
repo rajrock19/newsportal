@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\Home\HomeSliderController;
+
+use App\Http\Controllers\Frontend\FrontendController;
+
 
 
 
@@ -16,6 +20,8 @@ use App\Http\Controllers\Admin\AuthController;
 |
 */
 
+
+Route::get('/',[FrontendController::class,'index']);
 Route::prefix('admin')->group(function () {
 //Authetication 
 Route::get('/login',[AuthController::class,'index'])->name('admin.login');
@@ -35,6 +41,11 @@ Route::post('change/password/update',[AuthController::class,'changepassowrd_upda
 //dashboard
 Route::get('/dashboard',[AuthController::class,'dashnboard'])->name('admin.dashboard');
 
-//
+//Home Slide All route
+Route::controller(HomeSliderController::class)->group(function(){
+    Route::get('/home/slide','Homeslider')->name('home.slide');
+Route::Post('homeslider/update','update')->name('admin.homeslider.update');
+
+});
 
 });

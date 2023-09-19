@@ -28,8 +28,8 @@
         {{-- </ul> --}}
     {{-- </li> --}}
 
-    <li class= "{{ $url_2 == 'package' ? 'active' : '' }} {{ $url_2 == 'packages' ? 'active' : '' }}"><a href="">
-        <i class="fa fa-product-hunt"></i> <span >Packages</span> </span></a>
+    <li class= "{{ $url_2 == 'home' ? 'active' : '' }} {{ $url_2 == 'slider' ? 'active' : '' }}"><a href="{{route('home.slide')}}">
+        <i class="fa fa-product-hunt"></i> <span >Homeslider</span> </span></a>
 
     </li>
    {{-- <li class="{{ $url_2 == '' ? 'active' : '' }}">

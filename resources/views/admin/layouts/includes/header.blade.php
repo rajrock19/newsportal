@@ -54,7 +54,7 @@
                         <p class="text-muted mb-0">Administrator</p>
                     </div>
                 </div>
-              <a class="dropdown-item" href="{{route('admin.profile.show')}}"><i class="feather-edit me-1"></i> My Profile</a>
+              <a class="dropdown-item" href="{{route('admin.profile.show')}}"><i class="feather-edit me-1"></i> 🟠My Profile</a>
                 <a class="dropdown-item" href="{{route('admin.change.password')}}"><i class="feather-sliders me-1"></i>
                    Change Passowrd</a>
                 <hr class="my-0 ms-2 me-2">
