@@ -43,10 +43,10 @@
                                         placeholder="Enter name" value="{{$homeslide->video_url}}">
                                 </div>
                             </div>
-                            <div class="col-md-12 col-xl-12 col-xxl-12 form-group">
+                            <div class="col-md-2 col-xl-2 col-xxl-2 form-group">
                                 <label for="name"> <span class="text-danger">*</span></label>
                                 <div class="input-group">
-                            <img src="{{ asset('upload/home_slide/'.$homeslide->home_slide) }}"  id="showimage" alt="">
+                            <img src="{{(!empty($homeslide->home_slide))? url($homeslide->home_slide):url('upload/no_image.jpg')}}"  height="150px" width="200px" id="showimage" alt="">
                                 </div>
                             </div>
                             <div class="col-md-12 col-xl-12 col-xxl-12 form-group">
