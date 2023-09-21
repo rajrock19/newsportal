@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\Home\HomeSliderController;
-
+use App\Http\Controllers\Admin\Home\AboutController;
 use App\Http\Controllers\Frontend\FrontendController;
 
 
@@ -45,6 +45,12 @@ Route::get('/dashboard',[AuthController::class,'dashnboard'])->name('admin.dashb
 Route::controller(HomeSliderController::class)->group(function(){
     Route::get('/home/slide','Homeslider')->name('home.slide');
 Route::Post('homeslider/update','update')->name('admin.homeslider.update');
+
+});
+
+//About Slide All route
+Route::controller(AboutController::class)->group(function(){
+    Route::get('about/page','aboutPage')->name('about.page');
 
 });
 
