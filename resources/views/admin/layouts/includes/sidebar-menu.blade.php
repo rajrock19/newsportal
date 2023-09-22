@@ -32,6 +32,11 @@
         <i class="fa fa-product-hunt"></i> <span >Homeslider</span> </span></a>
 
     </li>
+    
+    <li class= "{{ $url_2 == 'home' ? 'active' : '' }} {{ $url_2 == 'slider' ? 'active' : '' }}"><a href="{{route('about.page')}}">
+        <i class="fa fa-product-hunt"></i> <span >About Page</span> </span></a>
+
+    </li>
    {{-- <li class="{{ $url_2 == '' ? 'active' : '' }}">
         <a href="#"><i class="fa fa-money"></i> <span >Booking Request</span></span></i>
         </a>
